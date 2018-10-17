@@ -1,6 +1,5 @@
 CC=docker run -v`pwd`":/src" --rm trzeci/emscripten emcc
 CFLAGS=-Os
-call: clean all
 all: test
 test: index.html main.js ; node main.js
 main.a: main.o eleven.o

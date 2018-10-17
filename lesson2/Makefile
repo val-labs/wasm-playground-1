@@ -2,13 +2,11 @@ CC=docker run -v`pwd`":/src" --rm trzeci/emscripten emcc
 CFLAGS=-Os -s EXPORTED_FUNCTIONS='["_main","_wopn","_wmsg","_wcls"]'\
  -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]'
 LDFLAGS=$(CFLAGS)
-#call: clean all
 SRCS=$(wildcard *.c)
 OBJS=$(SRCS:.c=.o)
-all: clean test2.tar.gz test
+all: test2.tar.gz test
 test: index.html
 	node test2.js
-	make ws
 test2.tar.gz: test2.a ./include/*
 	rm -fr test2.tar.gz lib
 	mkdir lib ; cp test2.a lib
